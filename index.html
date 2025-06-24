@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCSpeedShop HiPerformance A.I</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">KC</div>
+                    <div class="app-title">
+                        <span class="brand">KCSpeedShop</span>
+                        <span class="subtitle">HiPerformance A.I</span>
+                    </div>
+                </div>
+                <div class="connection-status">
+                    <div class="status-indicator connected" id="connectionStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">OBD2 Connected</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Dashboard Section -->
+            <section class="dashboard-section active" id="dashboard">
+                <div class="vehicle-info-card">
+                    <h2>2023 Toyota Supra</h2>
+                    <div class="vehicle-details">
+                        <span class="vin">VIN: JT164WBXXXXX123456</span>
+                        <span class="odometer">15,420 km</span>
+                    </div>
+                </div>
+
+                <div class="health-score-card">
+                    <div class="health-score-circle">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" class="score-bg"></circle>
+                            <circle cx="60" cy="60" r="50" class="score-progress" id="healthScoreCircle"></circle>
+                        </svg>
+                        <div class="score-content">
+                            <span class="score-number" id="healthScoreNumber">92</span>
+                            <span class="score-label">Health Score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="live-data-grid">
+                    <div class="data-card">
+                        <div class="data-icon">⚡</div>
+                        <div class="data-content">
+                            <span class="data-value" id="rpm">2,450</span>
+                            <span class="data-label">RPM</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">🌡️</div>
+                        <div class="data-content">
+                            <span class="data-value" id="coolantTemp">88°C</span>
+                            <span class="data-label">Coolant</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">🛢️</div>
+                        <div class="data-content">
+                            <span class="data-value" id="oilPressure">42 PSI</span>
+                            <span class="data-label">Oil Pressure</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">⛽</div>
+                        <div class="data-content">
+                            <span class="data-value" id="fuelLevel">78%</span>
+                            <span class="data-label">Fuel Level</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-access-grid">
+                    <div class="quick-access-card" data-section="diagnostics">
+                        <div class="card-icon">🔍</div>
+                        <span class="card-title">AI Diagnostics</span>
+                    </div>
+                    <div class="quick-access-card" data-section="tuning">
+                        <div class="card-icon">⚙️</div>
+                        <span class="card-title">Performance Tuning</span>
+                    </div>
+                    <div class="quick-access-card" data-section="analytics">
+                        <div class="card-icon">📊</div>
+                        <span class="card-title">Analytics</span>
+                    </div>
+                    <div class="quick-access-card" data-section="wallet">
+                        <div class="card-icon">💰</div>
+                        <span class="card-title">Blockchain Wallet</span>
+                    </div>
+                    <div class="quick-access-card" data-section="workshop">
+                        <div class="card-icon">🔧</div>
+                        <span class="card-title">Workshop</span>
+                    </div>
+                    <div class="quick-access-card" data-section="compliance">
+                        <div class="card-icon">📋</div>
+                        <span class="card-title">NZ Compliance</span>
+                    </div>
+                </div>
+
+                <div class="ai-insights-card">
+                    <h3>AI Insights</h3>
+                    <div class="insights-list" id="aiInsightsList">
+                        <div class="insight-item">
+                            <span class="insight-icon">💡</span>
+                            <span class="insight-text">Your vehicle is performing well with a health score of 92/100</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diagnostics Section -->
+            <section class="section" id="diagnostics">
+                <h2>AI Diagnostics Engine</h2>
+                
+                <div class="scan-controls">
+                    <button class="btn btn--primary" id="runScanBtn">Run Full Diagnostic Scan</button>
+                    <div class="scan-progress" id="scanProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">Ready to scan...</span>
+                    </div>
+                </div>
+
+                <div class="diagnostic-codes">
+                    <h3>Active Diagnostic Trouble Codes</h3>
+                    <div class="codes-list" id="codesList">
+                        <div class="code-item">
+                            <div class="code-header">
+                                <span class="code-number">P0301</span>
+                                <span class="severity medium">Medium</span>
+                            </div>
+                            <div class="code-description">Cylinder 1 Misfire Detected</div>
+                            <div class="ai-recommendation">
+                                <strong>AI Recommendation:</strong> Check spark plugs and ignition coils for cylinder 1. This could indicate worn spark plugs or faulty ignition components.
+                            </div>
+                        </div>
+                        <div class="code-item">
+                            <div class="code-header">
+                                <span class="code-number">P0420</span>
+                                <span class="severity low">Low</span>
+                            </div>
+                            <div class="code-description">Catalyst System Efficiency Below Threshold</div>
+                            <div class="ai-recommendation">
+                                <strong>AI Recommendation:</strong> Catalytic converter efficiency is slightly reduced. Monitor for now, but may need replacement if emissions testing fails.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-chat">
+                    <h3>AI Diagnostic Assistant</h3>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <span class="message-sender">AI Assistant</span>
+                            <span class="message-text">Hello! I've analyzed your vehicle's diagnostic data. How can I help you today?</span>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" class="form-control" placeholder="Ask about your vehicle..." id="chatInput">
+                        <button class="btn btn--primary" id="sendChatBtn">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tuning Section -->
+            <section class="section" id="tuning">
+                <h2>Performance Tuning Suite</h2>
+                
+                <div class="current-performance">
+                    <h3>Current Performance Metrics</h3>
+                    <div class="performance-grid">
+                        <div class="performance-card">
+                            <span class="metric-value">382</span>
+                            <span class="metric-label">HP</span>
+                        </div>
+                        <div class="performance-card">
+                            <span class="metric-value">499</span>
+                            <span class="metric-label">Nm Torque</span>
+                        </div>
+                        <div class="performance-card">
+                            <span class="metric-value">4.1s</span>
+                            <span class="metric-label">0-100 km/h</span>
+                        </div>
+                        <div class="performance-card">
+                            <span class="metric-value">8.9L</span>
+                            <span class="metric-label">Fuel Economy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tuning-profiles">
+                    <h3>Tuning Profiles</h3>
+                    <div class="profiles-grid">
+                        <div class="profile-card" data-profile="eco">
+                            <h4>Eco Mode</h4>
+                            <p>Optimized for fuel efficiency</p>
+                            <div class="profile-stats">
+                                <span class="stat-change negative">-15 HP</span>
+                                <span class="stat-change negative">-20 Nm</span>
+                                <span class="stat-change positive">+18% Fuel Savings</span>
+                            </div>
+                        </div>
+                        <div class="profile-card active" data-profile="sport">
+                            <h4>Sport Mode</h4>
+                            <p>Balanced performance and efficiency</p>
+                            <div class="profile-stats">
+                                <span class="stat-change positive">+25 HP</span>
+                                <span class="stat-change positive">+35 Nm</span>
+                                <span class="stat-change negative">-8% Fuel Economy</span>
+                            </div>
+                        </div>
+                        <div class="profile-card" data-profile="track">
+                            <h4>Track Mode</h4>
+                            <p>Maximum performance output</p>
+                            <div class="profile-stats">
+                                <span class="stat-change positive">+45 HP</span>
+                                <span class="stat-change positive">+60 Nm</span>
+                                <span class="stat-change negative">-25% Fuel Economy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--full-width" id="applyTuningBtn">Apply Selected Profile</button>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section class="section" id="analytics">
+                <h2>Advanced Analytics Dashboard</h2>
+                
+                <div class="analytics-overview">
+                    <div class="overview-card">
+                        <span class="overview-value">92/100</span>
+                        <span class="overview-label">Vehicle Health Score</span>
+                    </div>
+                    <div class="overview-card">
+                        <span class="overview-value">8.9L/100km</span>
+                        <span class="overview-label">Avg Fuel Consumption</span>
+                    </div>
+                    <div class="overview-card">
+                        <span class="overview-value">15,420km</span>
+                        <span class="overview-label">Total Distance</span>
+                    </div>
+                </div>
+
+                <div class="maintenance-schedule">
+                    <h3>Maintenance Schedule</h3>
+                    <div class="maintenance-list">
+                        <div class="maintenance-item">
+                            <div class="service-name">Oil Change</div>
+                            <div class="service-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 77%"></div>
+                                </div>
+                                <span class="service-km">15,420 / 20,000 km</span>
+                            </div>
+                            <span class="priority medium">Medium</span>
+                        </div>
+                        <div class="maintenance-item">
+                            <div class="service-name">Brake Fluid</div>
+                            <div class="service-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 62%"></div>
+                                </div>
+                                <span class="service-km">15,420 / 25,000 km</span>
+                            </div>
+                            <span class="priority low">Low</span>
+                        </div>
+                        <div class="maintenance-item">
+                            <div class="service-name">Air Filter</div>
+                            <div class="service-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 86%"></div>
+                                </div>
+                                <span class="service-km">15,420 / 18,000 km</span>
+                            </div>
+                            <span class="priority low">Low</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wallet Section -->
+            <section class="section" id="wallet">
+                <h2>Blockchain Wallet</h2>
+                
+                <div class="wallet-balance">
+                    <div class="balance-card">
+                        <span class="balance-amount">1,250.75</span>
+                        <span class="balance-currency">HBAR</span>
+                    </div>
+                    <div class="balance-card">
+                        <span class="balance-amount">8,750</span>
+                        <span class="balance-currency">KC Tokens</span>
+                    </div>
+                </div>
+
+                <div class="vip-status">
+                    <div class="vip-card">
+                        <span class="vip-tier">Gold VIP</span>
+                        <span class="vip-benefits">25% Workshop Discount • Priority Booking • Free Diagnostics</span>
+                    </div>
+                </div>
+
+                <div class="transaction-history">
+                    <h3>Recent Transactions</h3>
+                    <div class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-type">Workshop Booking</span>
+                                <span class="transaction-date">June 17, 2025</span>
+                            </div>
+                            <span class="transaction-amount negative">-75.00 HBAR</span>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-type">Diagnostic Service</span>
+                                <span class="transaction-date">June 15, 2025</span>
+                            </div>
+                            <span class="transaction-amount negative">-45.00 HBAR</span>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <span class="transaction-type">Loyalty Reward</span>
+                                <span class="transaction-date">June 14, 2025</span>
+                            </div>
+                            <span class="transaction-amount positive">+150.00 KC</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workshop Section -->
+            <section class="section" id="workshop">
+                <h2>Workshop Integration</h2>
+                
+                <div class="workshop-bays">
+                    <h3>Available Bays</h3>
+                    <div class="bays-grid">
+                        <div class="bay-card available">
+                            <h4>Community Bay</h4>
+                            <span class="bay-rate">$45/hour</span>
+                            <div class="bay-equipment">
+                                <span>Basic tools • Jack stands</span>
+                            </div>
+                            <span class="bay-status available">Available Now</span>
+                            <button class="btn btn--secondary">Book Bay</button>
+                        </div>
+                        <div class="bay-card unavailable">
+                            <h4>Self-Service Bay A</h4>
+                            <span class="bay-rate">$75/hour</span>
+                            <div class="bay-equipment">
+                                <span>2-post lift • Wheel balancer</span>
+                            </div>
+                            <span class="bay-status unavailable">Next: 14:30</span>
+                            <button class="btn btn--outline" disabled>Reserve</button>
+                        </div>
+                        <div class="bay-card available">
+                            <h4>Self-Service Bay B</h4>
+                            <span class="bay-rate">$75/hour</span>
+                            <div class="bay-equipment">
+                                <span>2-post lift • Alignment tools</span>
+                            </div>
+                            <span class="bay-status available">Available Now</span>
+                            <button class="btn btn--secondary">Book Bay</button>
+                        </div>
+                        <div class="bay-card available vip">
+                            <h4>VIP Performance Bay</h4>
+                            <span class="bay-rate">$150/hour</span>
+                            <div class="bay-equipment">
+                                <span>4-post lift • Dyno • Alignment rack</span>
+                            </div>
+                            <span class="bay-status available">Available Now</span>
+                            <button class="btn btn--primary">Book VIP Bay</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-timer">
+                    <h3>Current Session</h3>
+                    <div class="timer-display">
+                        <span class="timer-text">No Active Session</span>
+                        <button class="btn btn--outline" id="startSessionBtn">Start Session</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Compliance Section -->
+            <section class="section" id="compliance">
+                <h2>NZ Compliance Status</h2>
+                
+                <div class="compliance-overview">
+                    <div class="compliance-card">
+                        <h3>WoF Status</h3>
+                        <span class="status status--success">Current</span>
+                        <p>Expires: December 15, 2025</p>
+                    </div>
+                    <div class="compliance-card">
+                        <h3>Emission Standard</h3>
+                        <span class="status status--success">Euro 6d</span>
+                        <p>NZTA Compliant</p>
+                    </div>
+                </div>
+
+                <div class="compliance-checklist">
+                    <h3>Compliance Checklist</h3>
+                    <div class="checklist-items">
+                        <div class="checklist-item">
+                            <span class="check-icon">✓</span>
+                            <span class="check-text">WoF Current and Valid</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon">✓</span>
+                            <span class="check-text">Emissions Test Passed</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon">✓</span>
+                            <span class="check-text">NZTA Registration Valid</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon">⚠️</span>
+                            <span class="check-text">Minor Issues Detected (P0301, P0420)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Dashboard</span>
+            </div>
+            <div class="nav-item" data-section="diagnostics">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-label">Diagnostics</span>
+            </div>
+            <div class="nav-item" data-section="tuning">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Tuning</span>
+            </div>
+            <div class="nav-item" data-section="analytics">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Analytics</span>
+            </div>
+            <div class="nav-item" data-section="wallet">
+                <span class="nav-icon">💰</span>
+                <span class="nav-label">Wallet</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
