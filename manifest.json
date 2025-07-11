@@ -1,0 +1,131 @@
+{
+  "name": "KCSpeedShop HiPerformance A.I",
+  "short_name": "KCSpeedShop AI",
+  "description": "Hedera-powered automotive diagnostic and performance tuning platform",
+  "version": "2.1.0",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFCF9",
+  "theme_color": "#21808D",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["automotive", "utilities", "productivity"],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-dashboard.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dashboard on desktop"
+    },
+    {
+      "src": "/screenshots/mobile-diagnostics.png", 
+      "sizes": "360x640",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Diagnostics on mobile"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png", 
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128", 
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Diagnostics",
+      "short_name": "Diagnostics",
+      "description": "Run a quick diagnostic scan",
+      "url": "/#diagnostics",
+      "icons": [
+        {
+          "src": "/icons/diagnostics-shortcut.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Performance Tuning",
+      "short_name": "Tuning",
+      "description": "Access performance tuning profiles",
+      "url": "/#tuning", 
+      "icons": [
+        {
+          "src": "/icons/tuning-shortcut.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Workshop Booking",
+      "short_name": "Workshop",
+      "description": "Book a workshop bay",
+      "url": "/#workshop",
+      "icons": [
+        {
+          "src": "/icons/workshop-shortcut.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=ai.kcspeedshop.app",
+      "id": "ai.kcspeedshop.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/kcspeedshop-ai/id123456789"
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -148,11 +148,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial update
         updateLiveDataDisplay();
         
-        // Start interval for updates
+        // Start interval for updates with performance optimization
         liveDataInterval = setInterval(() => {
-            updateLiveData();
-            updateLiveDataDisplay();
+            // Only update if page is visible (performance optimization)
+            if (!document.hidden) {
+                updateLiveData();
+                updateLiveDataDisplay();
+            }
         }, 2000);
+        
+        // Pause updates when page is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (liveDataInterval) {
+                    clearInterval(liveDataInterval);
+                    liveDataInterval = null;
+                }
+            } else if (!liveDataInterval) {
+                startLiveDataUpdates();
+            }
+        });
     }
 
     function updateLiveData() {
@@ -283,14 +298,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Input sanitization utility
+    function sanitizeInput(input) {
+        const div = document.createElement('div');
+        div.textContent = input;
+        return div.innerHTML;
+    }
+
     function sendChatMessage() {
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
         
         if (!chatInput || !chatMessages || !chatInput.value.trim()) return;
         
-        const userMessage = chatInput.value.trim();
+        const userMessage = sanitizeInput(chatInput.value.trim());
         chatInput.value = '';
+        
+        // Prevent too frequent messages (rate limiting)
+        if (sendChatMessage.lastSent && Date.now() - sendChatMessage.lastSent < 1000) {
+            return;
+        }
+        sendChatMessage.lastSent = Date.now();
         
         // Add user message
         const userMessageElement = document.createElement('div');
@@ -493,8 +521,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10000);
     }
 
+    // --- PWA SERVICE WORKER REGISTRATION ---
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker: Registered successfully', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            if (newWorker) {
+                                newWorker.addEventListener('statechange', () => {
+                                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                        // New version available
+                                        showUpdateNotification();
+                                    }
+                                });
+                            }
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker: Registration failed', error);
+                    });
+            });
+        }
+    }
+
+    function showUpdateNotification() {
+        // Create update notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            max-width: 300px;
+        `;
+        notification.innerHTML = `
+            <div style="margin-bottom: 8px; font-weight: 500;">App Update Available</div>
+            <div style="margin-bottom: 12px; font-size: 14px;">A new version is ready. Refresh to update.</div>
+            <button onclick="window.location.reload()" style="background: white; color: var(--color-primary); border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Refresh</button>
+            <button onclick="this.parentElement.remove()" style="background: transparent; color: white; border: 1px solid white; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-left: 8px;">Later</button>
+        `;
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 30 seconds
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 30000);
+    }
+
     // Initialize all functionality
     function init() {
+        // Register service worker for PWA functionality
+        registerServiceWorker();
+        
         // Set up navigation
         setupNavigation();
         

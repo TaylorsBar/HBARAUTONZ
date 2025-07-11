@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KCSpeedShop HiPerformance A.I</title>
+    <meta name="description" content="Hedera-powered automotive diagnostic and performance tuning platform with AI-powered recommendations and blockchain integration.">
+    <meta name="keywords" content="automotive, diagnostics, performance tuning, OBD2, hedera, blockchain, AI">
+    <meta name="author" content="KCSpeedShop">
+    <meta name="theme-color" content="#21808D">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KCSpeedShop HiPerformance A.I">
+    <meta property="og:description" content="Advanced automotive diagnostic platform with blockchain integration">
+    <meta property="og:image" content="/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KCSpeedShop HiPerformance A.I">
+    <meta name="twitter:description" content="Advanced automotive diagnostic platform with blockchain integration">
+    
+    <title>KCSpeedShop HiPerformance A.I - Automotive Diagnostics & Performance</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
-        <header class="app-header">
+        <header class="app-header" role="banner">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo">KC</div>
+                    <div class="logo" aria-hidden="true">KC</div>
                     <div class="app-title">
-                        <span class="brand">KCSpeedShop</span>
+                        <h1 class="brand">KCSpeedShop</h1>
                         <span class="subtitle">HiPerformance A.I</span>
                     </div>
                 </div>
                 <div class="connection-status">
-                    <div class="status-indicator connected" id="connectionStatus">
-                        <span class="status-dot"></span>
+                    <div class="status-indicator connected" id="connectionStatus" role="status" aria-live="polite">
+                        <span class="status-dot" aria-hidden="true"></span>
                         <span class="status-text">OBD2 Connected</span>
                     </div>
                 </div>
@@ -28,9 +47,9 @@
         </header>
 
         <!-- Main Content -->
-        <main class="app-main">
+        <main class="app-main" role="main">
             <!-- Dashboard Section -->
-            <section class="dashboard-section active" id="dashboard">
+            <section class="dashboard-section active" id="dashboard" role="region" aria-labelledby="dashboard-title">
                 <div class="vehicle-info-card">
                     <h2>2023 Toyota Supra</h2>
                     <div class="vehicle-details">
@@ -440,27 +459,27 @@
         </main>
 
         <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <div class="nav-item active" data-section="dashboard">
-                <span class="nav-icon">🏠</span>
+        <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+            <button class="nav-item active" data-section="dashboard" role="button" aria-label="Go to Dashboard" aria-pressed="true">
+                <span class="nav-icon" aria-hidden="true">🏠</span>
                 <span class="nav-label">Dashboard</span>
-            </div>
-            <div class="nav-item" data-section="diagnostics">
-                <span class="nav-icon">🔍</span>
+            </button>
+            <button class="nav-item" data-section="diagnostics" role="button" aria-label="Go to Diagnostics" aria-pressed="false">
+                <span class="nav-icon" aria-hidden="true">🔍</span>
                 <span class="nav-label">Diagnostics</span>
-            </div>
-            <div class="nav-item" data-section="tuning">
-                <span class="nav-icon">⚙️</span>
+            </button>
+            <button class="nav-item" data-section="tuning" role="button" aria-label="Go to Tuning" aria-pressed="false">
+                <span class="nav-icon" aria-hidden="true">⚙️</span>
                 <span class="nav-label">Tuning</span>
-            </div>
-            <div class="nav-item" data-section="analytics">
-                <span class="nav-icon">📊</span>
+            </button>
+            <button class="nav-item" data-section="analytics" role="button" aria-label="Go to Analytics" aria-pressed="false">
+                <span class="nav-icon" aria-hidden="true">📊</span>
                 <span class="nav-label">Analytics</span>
-            </div>
-            <div class="nav-item" data-section="wallet">
-                <span class="nav-icon">💰</span>
+            </button>
+            <button class="nav-item" data-section="wallet" role="button" aria-label="Go to Wallet" aria-pressed="false">
+                <span class="nav-icon" aria-hidden="true">💰</span>
                 <span class="nav-label">Wallet</span>
-            </div>
+            </button>
         </nav>
     </div>
 
